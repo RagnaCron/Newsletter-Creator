@@ -7,6 +7,22 @@ body {
     margin: 0;
 }
 
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+}
+
+nav.main-login {
+
+}
+
+button {
+    cursor: pointer;
+}
+
 main {
     display: flex;
     flex-direction: column;
