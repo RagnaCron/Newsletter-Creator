@@ -1,0 +1,14 @@
+{
+  "author": "Manuel Werder",
+  "license": "ISC",
+  "name": "newsletter-creator",
+  "version": "0.1.0",
+  "description": "A Newsletter Creator for beautiful email Newsletters.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^7.1.4"
+  }
+}
