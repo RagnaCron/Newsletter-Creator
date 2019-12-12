@@ -3,6 +3,7 @@
 # Edit at https://www.gitignore.io/?templates=webstorm+all
 
 /node_modules/
+/sources/
 
 ### WebStorm+all ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
@@ -89,5 +90,7 @@ modules.xml
 
 # Sonarlint plugin
 .idea/sonarlint
+
+
 
 
