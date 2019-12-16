@@ -6,7 +6,7 @@
   "description": "A Newsletter Creator for beautiful email Newsletters.",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron . --disable-gpu"
   },
   "devDependencies": {
     "electron": "^7.1.4"

@@ -1,14 +1,15 @@
-
+'use strict';
 
 const { app, BrowserWindow, Menu } = require('electron');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow;
+let mainWindow = null;
 
 function createWindow () {
 	// Create the browser window.
 	mainWindow = new BrowserWindow({
+		// frame: false,
 		width: 1024,
 		height: 768,
 		webPreferences: {
@@ -17,8 +18,8 @@ function createWindow () {
 		}
 	});
 
-	// and load the index.html of the app.
-	mainWindow.loadFile('./src/html/index.html');
+	// and load the hello.html of the app.
+	mainWindow.loadFile('./src/html/hello.html');
 
 	// Open the DevTools.
 	mainWindow.webContents.openDevTools();
@@ -28,35 +29,9 @@ function createWindow () {
 		// Dereference the window object, usually you would store windows
 		// in an array if your app supports multi windows, this is the time
 		// when you should delete the corresponding element.
-		mainWindow = null
+		mainWindow = null;
 	});
 
-	const menu = Menu.buildFromTemplate([
-		{
-			label: 'Menu',
-			submenu: [
-				{
-					label: 'Overview',
-					accelerator: "CmdOrCtrl+Shift+V"
-				},
-				{type: 'separator'},
-				{
-					label: 'New Newsletter',
-					accelerator: "CmdOrCtrl+Shift+N"
-				},
-				{type: 'separator'},
-				{
-					label: 'Exit',
-					click() {
-						app.quit();
-					},
-					accelerator: "CmdOrCtrl+Q"
-				},
-			]
-		}
-	]);
-
-	Menu.setApplicationMenu(menu);
 }
 
 // This method will be called when Electron has finished
@@ -84,4 +59,38 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
+const newsLetterMainMenu = Menu.buildFromTemplate([
+	{
+		label: 'Menu',
+		submenu: [
+			{
+				label: 'Overview',
+				accelerator: "CmdOrCtrl+Shift+V"
+			},
+			{type: 'separator'},
+			{
+				label: 'New Newsletter',
+				accelerator: "CmdOrCtrl+Shift+N"
+			},
+			{type: 'separator'},
+			{
+				label: 'Exit',
+				click() {
+					app.quit();
+				},
+				accelerator: "CmdOrCtrl+Q"
+			},
+		]
+	},
+	{
+		label: 'Help',
+		submenu: [
+			{
+				label: 'Newsletter Editor'
+			},
+			{ type: "separator" }
+		]
+	}
+]);
 
+Menu.setApplicationMenu(newsLetterMainMenu);

@@ -1,59 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
 
+html, body {
+	height: 95%;
+}
 body {
+	display: flex;
 	/*background: #262626;*/
 	color: #707070;
 	font-family: monospace;
-	margin: 0;
+	justify-content: center;
 }
 
-nav {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-between;
-	height: 50px;
-	/*background: #005e83;*/
-	font-size: 20px;
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-/*.main-nav-username {*/
-/*    text-align: center;*/
-/*}*/
-
-/*.main-nav-screen-name {*/
-/*    text-align: center;*/
-/*}*/
-
-/*.main-login {*/
-/*    !*height: 35px;*!*/
-/*    text-align: center;*/
-/*}*/
-
-button {
-	cursor: pointer;
-	font-family: monospace;
-	font-size: 20px;
-	color: #707070;
-    /*border: none;*/
-    /*text-align: center;*/
-    /*border-radius: 8px;*/
-    /*padding-right: 5px;*/
-    /*padding-left: 5px;*/
-    /*margin: 0;*/
-}
-
-main {
+.hello-content {
+	height: 100%;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	font-family: inherit;
-}
+	text-align: center;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	justify-content: center
 
-.main-content {
-	height: 100%;
 }
 
 div {
@@ -61,9 +33,32 @@ div {
 	flex-direction: inherit;
 }
 
-.center-content {
-	text-align: center;
+.user-buttons {
+	align-items: center;
+	/*margin-top: 20px;*/
 }
 
+button {
+	cursor: pointer;
+	font-family: monospace;
+	font-size: 20px;
+	font-weight: bold;
+	color: #707070;
+	background: white;
+	border: 2px solid #707070;
+}
 
+.nice-button {
+	border-radius: 8px;
+	height: 52px;
+	width: 238px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+.nice-button:hover {
+	background-color: #707070;
+	color: white;
+}
 
