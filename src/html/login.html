@@ -2,9 +2,25 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
+	<!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+	<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"/>
+	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/userForm.css">
+	<script src="../js/login.js" defer></script>
 </head>
 <body>
-
+<header>
+	<button id="close-user-form">X</button>
+</header>
+<main role="main" class="user-content-form">
+	<h1 class="user-form-h1">Login</h1>
+	<form class="credentials">
+		<label class="label-style" for="log-name">Name</label>
+		<input id="log-name" type="text" placeholder="Name">
+		<label class="label-style" for="log-password">Enter Password</label>
+		<input id="log-password" type="password">
+		<input id="log-button" class="input-button-style" type="button" value="Login">
+	</form>
+</main>
 </body>
 </html>

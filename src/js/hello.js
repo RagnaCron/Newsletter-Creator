@@ -30,4 +30,14 @@ registerButton.addEventListener("click", () => {
 	subWindow.loadURL(registerHTML).then(() => subWindow.show());
 });
 
+loginButton.addEventListener("click", () => {
+	const registerHTML = path.join('file://', __dirname, 'login.html');
+
+	subWindow = createWindow(600, 560);
+
+	subWindow.on('close', () => subWindow = null);
+	subWindow.loadURL(registerHTML).then(() => subWindow.show());
+});
+
+
 

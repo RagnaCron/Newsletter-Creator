@@ -1,4 +1,4 @@
-#close-reg-form {
+#close-user-form {
 	margin-top: 2px;
 	margin-right: 2px;
 	position:absolute;
@@ -13,17 +13,23 @@
 
 .user-content-form {
 	height: 100%;
+	width: 60%;
 	display: flex;
 	flex-direction: column;
 	display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
 	-webkit-flex-align: center;
-	-ms-flex-align: center;
+	/*-ms-flex-align: center;*/
 	justify-content: center
 }
 
-.reg-button-style {
+.user-form-h1 {
+	align-self: center;
+	text-align: center;
+}
+
+.input-button-style {
 	cursor: pointer;
 	font-family: monospace;
 	font-size: 20px;
@@ -41,7 +47,7 @@
 	align-self: center;
 }
 
-.reg-button-style:hover {
+.input-button-style:hover {
 	background-color: #707070;
 	color: white;
 }
