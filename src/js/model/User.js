@@ -1,4 +1,4 @@
-
+"use strict";
 
 /**
  * The User for the Newsletter. This Class will be used to pass to a indexedDB.
