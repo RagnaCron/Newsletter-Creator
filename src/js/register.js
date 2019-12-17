@@ -1,7 +1,7 @@
 const electron = require("electron");
 const remote = electron.remote;
 
-const closeButton = document.getElementById("close-registration-form");
+const closeButton = document.getElementById("close-reg-form");
 closeButton.addEventListener("click", () => {
 	remote.getCurrentWindow().close();
 });

@@ -24,7 +24,7 @@ let subWindow = null;
 registerButton.addEventListener("click", () => {
 	const registerHTML = path.join('file://', __dirname, 'register.html');
 
-	subWindow = createWindow(600, 500);
+	subWindow = createWindow(600, 560);
 
 	subWindow.on('close', () => subWindow = null);
 	subWindow.loadURL(registerHTML).then(() => subWindow.show());

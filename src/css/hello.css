@@ -1,0 +1,33 @@
+.hello-content {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	font-family: inherit;
+	text-align: center;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	justify-content: center
+}
+
+.main-description {
+	font-size: 18px;
+}
+
+.user-buttons {
+	align-items: center;
+}
+
+.nice-button {
+	border-radius: 8px;
+	height: 52px;
+	width: 238px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}

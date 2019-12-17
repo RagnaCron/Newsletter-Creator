@@ -5,26 +5,9 @@ html, body {
 }
 body {
 	display: flex;
-	/*background: #262626;*/
 	color: #707070;
 	font-family: monospace;
 	justify-content: center;
-}
-
-.hello-content {
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	font-family: inherit;
-	text-align: center;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-flex-align: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
-	justify-content: center
 }
 
 h1 {
@@ -34,14 +17,6 @@ h1 {
 div {
 	display: flex;
 	flex-direction: inherit;
-}
-
-.main-description {
-	font-size: 18px;
-}
-
-.user-buttons {
-	align-items: center;
 }
 
 button {
@@ -54,17 +29,30 @@ button {
 	border: 2px solid #707070;
 }
 
-.nice-button {
-	border-radius: 8px;
-	height: 52px;
-	width: 238px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-}
-.nice-button:hover {
+button:hover {
 	background-color: #707070;
 	color: white;
 }
 
+form {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+}
+
+label {
+	font-family: inherit;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+input {
+	color: #707070;
+	font-family: inherit;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	border-radius: 4px;
+}
