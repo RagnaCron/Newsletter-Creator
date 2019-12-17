@@ -27,14 +27,21 @@ body {
 	justify-content: center
 }
 
+h1 {
+	font-size: 32px;
+}
+
 div {
 	display: flex;
 	flex-direction: inherit;
 }
 
+.main-description {
+	font-size: 18px;
+}
+
 .user-buttons {
 	align-items: center;
-	/*margin-top: 20px;*/
 }
 
 button {
