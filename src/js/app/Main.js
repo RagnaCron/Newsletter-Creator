@@ -1,5 +1,5 @@
 'use strict';
 
-const NewsletterApp = require("./NewsletterApp");
-const app = new NewsletterApp();
-app.init();
+const NewsletterController = require("./NewsletterController");
+const appController = new NewsletterController();
+appController.run();

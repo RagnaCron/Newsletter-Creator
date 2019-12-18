@@ -1,22 +1,17 @@
 "use strict";
 
-const electron = require('electron');
-const path = require('path');
-
 class NewsletterApp {
-	constructor() {
-		this.app = null;
+	constructor(electron, path) {
+		this.electron = electron;
+		this.menu = this.electron.Menu;
+		this.app = this.electron.app;
+		this.path = path;
 		this.mainWindow = null;
-		this.menu = null;
-		this.user = null;
 		this.getHelloTemplate = require("./templates/HelloMenuTemplate");
 		this.getNewletterTemplate = require("./templates/NewsletterMenuTemplate");
 	}
 
-	init() {
-		this.app = electron.app;
-		this.menu = electron.Menu;
-
+	loadAppListeners() {
 		this.app.on('ready', () => {
 			this.createWindow();
 			this.createMenu(this.getHelloTemplate(this.app));
@@ -36,7 +31,7 @@ class NewsletterApp {
 	}
 
 	createWindow() {
-		this.mainWindow = new electron.BrowserWindow({
+		this.mainWindow = new this.electron.BrowserWindow({
 			width: 1024,
 			height: 768,
 			minWidth: 1024,
@@ -46,12 +41,11 @@ class NewsletterApp {
 			}
 		});
 
-		this.mainWindow.loadFile(path.join(__dirname, "../../html/Hello.html"));
+		this.mainWindow.loadFile(this.path.join(__dirname, "../../html/Hello.html"));
 
 		// Open the DevTools.
 		this.mainWindow.webContents.openDevTools();
 
-		// Emitted when the window is closed.
 		this.mainWindow.on('closed', () => {
 			this.mainWindow = null;
 		});
