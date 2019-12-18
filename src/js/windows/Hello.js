@@ -9,13 +9,15 @@ const registerButton = document.getElementById('register-button');
 
 const createWindow = (width, height) => {
 	return new BrowserWindow({
+		width: width,
+		height: height,
+		minWidth: width,
+		minHeight: height,
+		frame: false,
+		alwaysOnTop: true,
 		webPreferences: {
 			nodeIntegration: true
 		},
-		width: width,
-		height: height,
-		frame: false,
-		alwaysOnTop: true,
 	});
 };
 
@@ -31,12 +33,12 @@ registerButton.addEventListener("click", () => {
 });
 
 loginButton.addEventListener("click", () => {
-	const registerHTML = path.join('file://', __dirname, 'Login.html');
+	const loginHTML = path.join('file://', __dirname, 'Login.html');
 
 	subWindow = createWindow(600, 560);
 
 	subWindow.on('close', () => subWindow = null);
-	subWindow.loadURL(registerHTML).then(() => subWindow.show());
+	subWindow.loadURL(loginHTML).then(() => subWindow.show());
 });
 
 

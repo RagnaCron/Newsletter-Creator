@@ -1,42 +1,33 @@
 "use strict";
-
 const electron = require('electron');
 const path = require('path');
-const Menu = electron.Menu;
 
 class NewsletterApp {
-
 	constructor() {
-		this.app = require("electron").app;
+		this.app = null;
 		this.mainWindow = null;
+		this.menu = null;
 		this.user = null;
-		this.getHelloTemplate = require("./HelloMenuTemplate");
-		this.getNewletterTemplate = require("./NewsletterMenuTemplate");
+		this.getHelloTemplate = require("./templates/HelloMenuTemplate");
+		this.getNewletterTemplate = require("./templates/NewsletterMenuTemplate");
 	}
 
 	init() {
-		// this.app = electron.app;
-
-		// This method will be called when Electron has finished
-		// initialization and is ready to create browser windows.
-		// Some APIs can only be used after this event occurs.
+		this.app = electron.app;
+		this.menu = electron.Menu;
+		
 		this.app.on('ready', () => {
 			this.createWindow();
 			this.createMenu(this.getHelloTemplate(this.app));
 		});
 
-		// Quit when all windows are closed.
 		this.app.on('window-all-closed', () => {
-			// On OS X it is common for applications and their menu bar
-			// to stay active until the user quits explicitly with Cmd + Q
 			if (process.platform !== 'darwin') {
 				this.app.quit();
 			}
 		});
 
 		this.app.on('activate', () => {
-			// On OS X it's common to re-create a window in the app when the
-			// dock icon is clicked and there are no other windows open.
 			if (this.mainWindow === null) {
 				this.createWindow();
 			}
@@ -66,8 +57,8 @@ class NewsletterApp {
 	}
 
 	createMenu(template) {
-		const newsLetterMenu = Menu.buildFromTemplate(template);
-		Menu.setApplicationMenu(newsLetterMenu);
+		const newsLetterMenu = this.menu.buildFromTemplate(template);
+		this.menu.setApplicationMenu(newsLetterMenu);
 	}
 }
 
