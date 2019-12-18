@@ -22,7 +22,7 @@ const createWindow = (width, height) => {
 let subWindow = null;
 
 registerButton.addEventListener("click", () => {
-	const registerHTML = path.join('file://', __dirname, 'register.html');
+	const registerHTML = path.join('file://', __dirname, 'Register.html');
 
 	subWindow = createWindow(600, 560);
 
@@ -31,7 +31,7 @@ registerButton.addEventListener("click", () => {
 });
 
 loginButton.addEventListener("click", () => {
-	const registerHTML = path.join('file://', __dirname, 'login.html');
+	const registerHTML = path.join('file://', __dirname, 'Login.html');
 
 	subWindow = createWindow(600, 560);
 

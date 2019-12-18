@@ -4,7 +4,7 @@
   "name": "newsletter-creator",
   "version": "0.1.0",
   "description": "A Newsletter Creator for beautiful email Newsletters.",
-  "main": "main.js",
+  "main": "src/js/app/Main.js",
   "scripts": {
     "start": "electron . --disable-gpu"
   },
