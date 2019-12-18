@@ -1,4 +1,5 @@
 "use strict";
+
 const electron = require('electron');
 const path = require('path');
 
@@ -15,7 +16,7 @@ class NewsletterApp {
 	init() {
 		this.app = electron.app;
 		this.menu = electron.Menu;
-		
+
 		this.app.on('ready', () => {
 			this.createWindow();
 			this.createMenu(this.getHelloTemplate(this.app));
