@@ -5,14 +5,17 @@ function getHelloTemplate(app) {
 		{
 			label: "Menu",
 			submenu: [
-				{
-					label: "Login",
-				},
-				{type: 'separator'},
-				{
-					label: "Register"
-				},
-				{type: 'separator'},
+				// {
+				// 	label: "Login",
+				// },
+				// {type: 'separator'},
+				// {
+				// 	label: "Register",
+				// 	click() {
+				// 		app.get
+				// 	}
+				// },
+				// {type: 'separator'},
 				{
 					label: 'Exit',
 					click() {

@@ -17,6 +17,9 @@ function getNewsletterTemplate(app) {
 				{type: 'separator'},
 				{
 					label: "Logout",
+					// click() {
+					//
+					// },
 					accelerator: "CmdOrCtrl+Shift+Alt+Q"
 				},
 				{

@@ -13,6 +13,8 @@ const createWindow = (width, height) => {
 		height: height,
 		minWidth: width,
 		minHeight: height,
+		maxWidth: width,
+		maxHeight: height,
 		frame: false,
 		alwaysOnTop: true,
 		webPreferences: {
@@ -53,7 +55,7 @@ loginButton.addEventListener("click", () => {
 //
 // 	createSubWindow(width, height) {
 // 		const BrowserWindow = this.electron.BrowserWindow;
-// 		this.subWindow =  new BrowserWindow({
+// 		this.subWindow = new BrowserWindow({
 // 			width: width,
 // 			height: height,
 // 			minWidth: width,
@@ -68,9 +70,15 @@ loginButton.addEventListener("click", () => {
 //
 // 	loadHelloListeners() {
 // 		// const app = this.remote.app;
-// 		this.electron.app.on("ready", () => {
-//
-// 			const loginButton = document.getElementById('login-button');
+// 		// this.electron.app.on("ready", (event) => {
+// 			// this.electron.window.document.getElementById()
+// 			// this.createSubWindow(600, 560);
+// 			// this.electron.remote.getCurrentWindow().on(this.subWindow.on("ready",), () => {
+// 			//
+// 			// });
+// 		const remote = this.electron.remote;
+// 		win.addListener("ready", event => {
+// 			const loginButton = this.electron.remote.getCurrentWindow().window.document.getElementById('login-button');
 // 			const registerButton = document.getElementById('register-button');
 //
 // 			registerButton.addEventListener("click", () => {
@@ -91,6 +99,9 @@ loginButton.addEventListener("click", () => {
 // 				this.subWindow.on('close', () => this.subWindow = null);
 // 			});
 // 		});
+//
+//
+// 		// });
 // 	}
 // }
 //
