@@ -1,17 +1,20 @@
 "use strict";
 
+const electron = require("electron");
+const path = require("path");
+// const HellScreenView = require("../windows/HelloScreenView");
+
 class NewsletterApp {
-	constructor(electron, path) {
-		this.electron = electron;
-		this.menu = this.electron.Menu;
-		this.app = this.electron.app;
-		this.path = path;
+	constructor() {
+		this.menu = electron.Menu;
+		this.app = electron.app;
 		this.mainWindow = null;
 		this.getHelloTemplate = require("./templates/HelloMenuTemplate");
 		this.getNewletterTemplate = require("./templates/NewsletterMenuTemplate");
+		// this.view = null
 	}
 
-	loadAppListeners() {
+	run() {
 		this.app.on('ready', () => {
 			this.createWindow();
 			this.createMenu(this.getHelloTemplate(this.app));
@@ -28,10 +31,12 @@ class NewsletterApp {
 				this.createWindow();
 			}
 		});
+
+		// this.loadViews();
 	}
 
 	createWindow() {
-		this.mainWindow = new this.electron.BrowserWindow({
+		this.mainWindow = new electron.BrowserWindow({
 			width: 1024,
 			height: 768,
 			minWidth: 1024,
@@ -41,7 +46,7 @@ class NewsletterApp {
 			}
 		});
 
-		this.mainWindow.loadFile(this.path.join(__dirname, "../../html/Hello.html"));
+		this.mainWindow.loadFile(path.join(__dirname, "../../html/HelloScreenView.html"));
 
 		// Open the DevTools.
 		this.mainWindow.webContents.openDevTools();
@@ -55,6 +60,11 @@ class NewsletterApp {
 		const newsLetterMenu = this.menu.buildFromTemplate(template);
 		this.menu.setApplicationMenu(newsLetterMenu);
 	}
+
+	// loadViews() {
+	// 	this.view = new HellScreenView(electron, path);
+	// 	this.view.loadHelloListeners();
+	// }
 }
 
 module.exports = NewsletterApp;
