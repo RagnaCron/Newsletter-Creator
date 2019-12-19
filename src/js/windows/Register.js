@@ -27,7 +27,6 @@ registerButton.addEventListener("click", () => {
 	if (valid) {
 		connectToDB(addUser);
 	}
-
 });
 
 
