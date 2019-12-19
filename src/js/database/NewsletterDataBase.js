@@ -4,7 +4,6 @@ const DB_NAME = "CreatorDB";
 const DB_VERSION = 1;
 const DB_STORE_USERS = "Users";
 const DB_STORE_NEWSLETTERS = "Newsletters";
-// const User = require("electron").remote.require("../models/User");
 
 class NewsletterDataBase {
 
@@ -15,6 +14,11 @@ class NewsletterDataBase {
 	}
 
 	openDB() {
+		// // In the following line, you should include the prefixes of implementations you want to test.
+		// window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
+		// window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
+		// window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+
 		console.log("opening DB ...");
 		const request = indexedDB.open(DB_NAME, DB_VERSION);
 
@@ -27,12 +31,12 @@ class NewsletterDataBase {
 			console.error("opening DB ERROR:", evt.target.errorCode);
 		};
 
-		request.onupgradeneeded =(evt) => {
+		request.onupgradeneeded = (evt) => {
 			console.log("opening DB onupgradeneeded");
 			const userObjectStore = evt.currentTarget.result.createObjectStore(
-				DB_STORE_USERS, { keyPath: 'id', autoIncrement: true });
-			userObjectStore.createIndex('userName', 'userName', { unique: true });
-			userObjectStore.createIndex('email', 'email', { unique: true });
+				DB_STORE_USERS, {keyPath: 'id', autoIncrement: true});
+			userObjectStore.createIndex('userName', 'userName', {unique: true});
+			userObjectStore.createIndex('email', 'email', {unique: true});
 
 			const newsletterObjectStore = evt.currentTarget.result.createObjectStore(
 				DB_STORE_NEWSLETTERS, {keyPath: "id", autoIncrement: true});
