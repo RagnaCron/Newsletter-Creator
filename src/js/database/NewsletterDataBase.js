@@ -1,11 +1,10 @@
-"use strict";
+// "use strict";
 
 const DB_NAME = "CreatorDB";
 const DB_VERSION = 1;
 const DB_STORE_USERS = "Users";
 const DB_STORE_NEWSLETTERS = "Newsletters";
-
-const User = require("../model/User");
+// const User = require("electron").remote.require("../models/User");
 
 class NewsletterDataBase {
 
@@ -41,15 +40,20 @@ class NewsletterDataBase {
 		};
 	}
 
+	closeDB() {
+		this.db.close();
+	}
+
 	/**
 	 * @param {string} mode either "readonly" or "readwrite"
 	 */
-	openObjectUserObjectStore(mode) {
+	openUserObjectStore(mode) {
+		console.log("opening User ObjectStore");
 		this.userObjectStore = this.db.transaction(DB_STORE_USERS, mode).objectStore(DB_STORE_USERS);
 	}
 
 	clearUserObjectStore() {
-		this.openObjectUserObjectStore('readwrite');
+		this.openUserObjectStore('readwrite');
 		const request = this.userObjectStore.clear();
 
 		request.onsuccess = (evt) => {
@@ -62,9 +66,9 @@ class NewsletterDataBase {
 		};
 	}
 
-	/**
-	 * @param {User} user to add
-	 */
+	// /**
+	//  * @param {User} user to add
+	//  */
 	addUser(user) {
 		const request = this.userObjectStore.add(user);
 		request.onerror = (evt) => {
@@ -75,35 +79,60 @@ class NewsletterDataBase {
 		};
 	}
 
-	/**
-	 * @param {string} userName to Look up
-	 * @param {string} password to Look up
-	 * @return {User} a User object or null
-	 */
-	getUser(userName, password) {
+	// /**
+	//  * @param {string} userName to Look up
+	//  * @param {string} password to Look up
+	//  * @return {User} a User object or null
+	//  */
+	getUser(userName, password, getUserCallback) {
 		const index = this.userObjectStore.index(userName);
-		let user = null;
 		index.get(userName).onerror = (evt) => {
 			console.error("getUser ERROR:", evt.target.result.userName);
+			getUserCallback(false);
 		};
 		index.get(userName).onsuccess = (evt) => {
 			const data = evt.target.result;
 			if (data.password === password) {
-				user = new User(data.userName, data.email, data.birthday, null);
+				const user = {
+					userName: data.userName,
+					email: data.email,
+					birthday: data.birthday,
+					password: null
+				};
+				getUserCallback(user);
+			} else {
+				getUserCallback("Wrong Username or Password.");
 			}
 		};
-		return user;
+	}
+
+	containsUsername(userName) {
+		let is = false;
+		const index = this.userObjectStore.index(userName);
+		index.get(userName).onsuccess = (evt) => {
+			is = true;
+		};
+		return is;
+	}
+
+	containsEmail(email) {
+		let is = false;
+		const index = this.userObjectStore.index(email);
+		index.get(email).onsuccess = (evt) => {
+			is = true;
+		};
+		return is;
 	}
 
 	/**
 	 * @param {string} mode either "readonly" or "readwrite"
 	 */
-	openObjectNewsletterObjectStore(mode) {
+	openNewsletterObjectStore(mode) {
 		this.newsletterObjectStore = this.db.transaction(DB_STORE_NEWSLETTERS, mode).objectStore(DB_STORE_NEWSLETTERS);
 	}
 
 	clearNewsletterObjectStore() {
-		this.openObjectNewsletterObjectStore('readwrite');
+		this.openNewsletterObjectStore('readwrite');
 		const request = this.newsletterObjectStore.clear();
 
 		request.onsuccess = (evt) => {

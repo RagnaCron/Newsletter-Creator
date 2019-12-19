@@ -11,10 +11,10 @@ const createWindow = (width, height) => {
 	return new BrowserWindow({
 		width: width,
 		height: height,
-		minWidth: width,
-		minHeight: height,
-		maxWidth: width,
-		maxHeight: height,
+		// minWidth: width,
+		// minHeight: height,
+		// maxWidth: width,
+		// maxHeight: height,
 		frame: false,
 		alwaysOnTop: true,
 		webPreferences: {
@@ -29,6 +29,7 @@ registerButton.addEventListener("click", () => {
 	const registerHTML = path.join('file://', __dirname, 'Register.html');
 
 	subWindow = createWindow(600, 560);
+	subWindow.webContents.openDevTools();
 
 	subWindow.on('close', () => subWindow = null);
 	subWindow.loadURL(registerHTML).then(() => subWindow.show());
@@ -38,6 +39,7 @@ loginButton.addEventListener("click", () => {
 	const loginHTML = path.join('file://', __dirname, 'Login.html');
 
 	subWindow = createWindow(600, 560);
+	subWindow.webContents.openDevTools();
 
 	subWindow.on('close', () => subWindow = null);
 	subWindow.loadURL(loginHTML).then(() => subWindow.show());
