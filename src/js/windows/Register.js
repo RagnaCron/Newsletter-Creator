@@ -65,7 +65,7 @@ function connectToDB(dbCallback) {
 	const request = indexedDB.open(DB_NAME, DB_VERSION);
 	request.onsuccess = () => {
 		console.log("opening DB DONE");
-		return dbCallback(request.result);
+		dbCallback(request.result);
 	};
 	request.onerror = () => {
 		console.error("opening DB ERROR:", request.error);
