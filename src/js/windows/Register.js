@@ -4,7 +4,6 @@ const electron = require("electron");
 const remote = electron.remote;
 
 const User = remote.require("../models/User");
-
 const DB_NAME = "CreatorDB";
 const DB_VERSION = 1;
 const DB_STORE_USERS = "Users";
@@ -14,35 +13,73 @@ closeButton.addEventListener("click", () => {
 	remote.getCurrentWindow().close();
 });
 
-const regName = document.getElementById("reg-button");
+function message(field, message, validity) {
+	field.innerText = message;
+	valid = validity;
+}
+
+const regName = document.getElementById("reg-name");
+const nameError = document.getElementById("name-error");
+regName.onblur = () => {
+	if (regName.value.length < 4 || regName.value.length > 12)
+		message(nameError, "Enter a Username with more then 4 and less then 12 characters.", false);
+	else
+		message(nameError, "", true);
+};
+regName.onfocus = () => message(nameError, "", false);
+
 const regEmail = document.getElementById("reg-email");
+const emailError  = document.getElementById("email-error");
+regEmail.onblur = () => {
+	if (regEmail.validity.valid)
+		message(emailError, "", true);
+	else
+		message(emailError, "Enter a correct email address.", false);
+};
+emailError.onfocus = () => message(emailError, "", false);
+
 const regBirthday = document.getElementById("reg-birthday");
+const birthdayError = document.getElementById("birthday-error");
+regBirthday.onblur = () => {
+	if (regBirthday.validity.valid)
+		message(birthdayError, "", true);
+	else
+		message(birthdayError, "Choose your birthday.", false);
+};
+regBirthday.onfocus = () => message(birthdayError, "", false);
+
 const regPassword1 = document.getElementById("reg-password1");
 const regPassword2 = document.getElementById("reg-password2");
 
+let valid = false;
 const registerButton = document.getElementById("reg-button");
 registerButton.addEventListener("click", () => {
-	// const valid = validateRegistrationFrom();
-	const valid = true;
-	if (valid) {
+	if (validateRegistrationForm()) {
 		connectToDB(addUser);
 	}
 });
 
+function validateRegistrationForm() {
+	if (regName.value.length < 4 && regName.value.length > 12) {
+		valid = false;
+		nameError.innerText = "Your";
+	} else {
+		valid = true;
+		nameError.innerText = "";
+	}
+	return valid;
+}
 
 function connectToDB(dbCallback) {
 	console.log("opening DB ...");
 	const request = indexedDB.open(DB_NAME, DB_VERSION);
-
 	request.onsuccess = () => {
 		console.log("opening DB DONE");
 		return dbCallback(request.result);
 	};
-
 	request.onerror = () => {
 		console.error("opening DB ERROR:", request.error);
 	};
-
 	request.onupgradeneeded = () => {
 		console.log("opening DB onupgradeneeded");
 		if (!request.result.objectStoreNames.contains(DB_STORE_USERS)) {
