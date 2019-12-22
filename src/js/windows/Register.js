@@ -13,40 +13,41 @@ closeButton.addEventListener("click", () => {
 	remote.getCurrentWindow().close();
 });
 
-function message(field, message, validity) {
+function message(field, message, validity = false) {
 	field.innerText = message;
 	valid = validity;
+}
+
+function inputValidationCheck(validationField, errorField, errorMessage) {
+	if (validationField.validity.valid)
+		message(errorField, "", true);
+	else
+		message(errorField, errorMessage, false);
 }
 
 const regName = document.getElementById("reg-name");
 const nameError = document.getElementById("name-error");
 regName.onblur = () => {
-	if (regName.value.length < 4 || regName.value.length > 12)
-		message(nameError, "Enter a Username with more then 4 and less then 12 characters.", false);
-	else
-		message(nameError, "", true);
+	const error = "Enter a Username with more then 4 and less then 12 characters.";
+	inputValidationCheck(regName, nameError, error);
 };
-regName.onfocus = () => message(nameError, "", false);
+regName.onfocus = () => message(nameError, "");
 
 const regEmail = document.getElementById("reg-email");
 const emailError  = document.getElementById("email-error");
 regEmail.onblur = () => {
-	if (regEmail.validity.valid)
-		message(emailError, "", true);
-	else
-		message(emailError, "Enter a correct email address.", false);
+	const error = "Enter a correct email address.";
+	inputValidationCheck(regEmail, emailError, error);
 };
-emailError.onfocus = () => message(emailError, "", false);
+emailError.onfocus = () => message(emailError, "");
 
 const regBirthday = document.getElementById("reg-birthday");
 const birthdayError = document.getElementById("birthday-error");
 regBirthday.onblur = () => {
-	if (regBirthday.validity.valid)
-		message(birthdayError, "", true);
-	else
-		message(birthdayError, "Choose your birthday.", false);
+	const error = "Choose your birthday.";
+	inputValidationCheck(regBirthday, birthdayError, error);
 };
-regBirthday.onfocus = () => message(birthdayError, "", false);
+regBirthday.onfocus = () => message(birthdayError, "");
 
 const regPassword1 = document.getElementById("reg-password1");
 const regPassword2 = document.getElementById("reg-password2");
@@ -54,21 +55,10 @@ const regPassword2 = document.getElementById("reg-password2");
 let valid = false;
 const registerButton = document.getElementById("reg-button");
 registerButton.addEventListener("click", () => {
-	if (validateRegistrationForm()) {
+	if (valid) {
 		connectToDB(addUser);
 	}
 });
-
-function validateRegistrationForm() {
-	if (regName.value.length < 4 && regName.value.length > 12) {
-		valid = false;
-		nameError.innerText = "Your";
-	} else {
-		valid = true;
-		nameError.innerText = "";
-	}
-	return valid;
-}
 
 function connectToDB(dbCallback) {
 	console.log("opening DB ...");

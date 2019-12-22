@@ -13,32 +13,24 @@
 	<button id="close-user-form">X</button>
 </header>
 <main role="main" class="user-content-form">
-	<h1 class="user-form-h1">Register Yourself</h1>
-	<template id="error-Tag">
-
-	</template>
+	<h1 class="user-form-h1">Sign Up</h1>
 	<form id="reg-form" class="credentials">
 		<label class="label-style" for="reg-name">Name</label>
-		<input id="reg-name" type="text" placeholder="Name" required>
+		<input id="reg-name" type="text" placeholder="Name" minlength="4" maxlength="12" required>
 		<span id="name-error" class="reg-errors"></span>
-
 		<label class="label-style" for="reg-email">Email</label>
 		<input id="reg-email" type="email" placeholder="your@emailaddress.com" required>
 		<span id="email-error" class="reg-errors"></span>
-
 		<label class="label-style" for="reg-birthday">Birthday</label>
 		<input id="reg-birthday" type="date"  required>
 		<span id="birthday-error" class="reg-errors"></span>
-
 		<label class="label-style" for="reg-password1">Enter Password</label>
 		<input id="reg-password1" type="password" placeholder="Password" required>
 		<span id="password1-error" class="reg-errors"></span>
-
 		<label class="label-style" for="reg-password2">Confirm Password</label>
 		<input id="reg-password2" type="password" placeholder="Confirm Password" required>
 		<span id="password2-error" class="reg-errors"></span>
-
-		<input id="reg-button" class="input-button-style" type="button" value="Register">
+		<input id="reg-button" class="input-button-style" type="button" value="Sign Up">
 	</form>
 </main>
 </body>

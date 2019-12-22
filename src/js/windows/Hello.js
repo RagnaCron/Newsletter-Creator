@@ -26,7 +26,7 @@ const createWindow = (width, height) => {
 let subWindow = null;
 
 registerButton.addEventListener("click", () => {
-	const registerHTML = path.join('file://', __dirname, 'Register.html');
+	const registerHTML = path.join('file://', __dirname, 'Registration.html');
 
 	subWindow = createWindow(600, 700);
 	subWindow.webContents.openDevTools();
@@ -84,7 +84,7 @@ loginButton.addEventListener("click", () => {
 // 			const registerButton = document.getElementById('register-button');
 //
 // 			registerButton.addEventListener("click", () => {
-// 				const registerHTML = this.path.join('file://', __dirname, 'Register.html');
+// 				const registerHTML = this.path.join('file://', __dirname, 'Registration.html');
 //
 // 				this.createSubWindow(600, 560);
 // 				this.subWindow.loadURL(registerHTML).then(() => this.subWindow.show());
