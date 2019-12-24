@@ -29,6 +29,10 @@
 	text-align: center;
 }
 
+.reg-errors {
+	color: rgba(163,49,56,0.95);
+}
+
 .input-button-style {
 	cursor: pointer;
 	font-family: monospace;
