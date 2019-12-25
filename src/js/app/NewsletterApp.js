@@ -2,6 +2,7 @@
 
 const electron = require("electron");
 const path = require("path");
+const User = require("../models/User");
 
 
 class NewsletterApp {
@@ -10,6 +11,7 @@ class NewsletterApp {
 		this.app = electron.app;
 		this.ipc = electron.ipcMain;
 		this.mainWindow = null;
+		this.user = null;
 		this.getHelloTemplate = require("./templates/HelloMenuTemplate");
 		this.getNewletterTemplate = require("./templates/NewsletterMenuTemplate");
 	}
@@ -33,7 +35,7 @@ class NewsletterApp {
 		});
 
 		this.ipc.on("login-successful", (evt, arg) => {
-
+			this.user = new User(arg);
 		});
 	}
 

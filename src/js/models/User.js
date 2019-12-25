@@ -7,6 +7,12 @@ class User {
 		this.birthday = birthday;
 		this.password = password;
 	}
+	constructor(user) {
+		this.userName = user.userName;
+		this.email = user.email;
+		this.birthday = user.birthday;
+		this.password = user.password;
+	}
 }
 
 module.exports = User;
