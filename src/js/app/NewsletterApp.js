@@ -14,11 +14,13 @@ class NewsletterApp {
 		this.user = null;
 		this.getHelloTemplate = require("./templates/HelloMenuTemplate");
 		this.getNewletterTemplate = require("./templates/NewsletterMenuTemplate");
+		this.overview = "../../html/Overview.html";
+		this.hello = "../../html/Hello.html";
 	}
 
 	run() {
 		this.app.on('ready', () => {
-			this.createWindow("../../html/Hello.html");
+			this.createWindow(this.hello);
 			this.createMenu(this.getHelloTemplate(this.app));
 		});
 
@@ -35,7 +37,12 @@ class NewsletterApp {
 		});
 
 		this.ipc.on("login-successful", (evt, arg) => {
-			this.user = new User(arg);
+			// this.mainWindow = null;
+			this.user = new User(arg.userName, arg.email, arg.birthday, arg.password);
+			this.mainWindow.unload
+			this.mainWindow.loadFile(path.join(__dirname, this.overview));
+			// this.mainWindow = this.createWindow(this.overview);
+			this.createMenu(this.getNewletterTemplate(this.app))
 		});
 	}
 

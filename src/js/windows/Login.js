@@ -57,13 +57,6 @@ function connectToDB(dbSuccessCallback) {
 	};
 }
 
-// function login(db) {
-// 	const transaction = db.transaction([DB_STORE_USERS], "readonly");
-// 	const userObjectStore = transaction.objectStore(DB_STORE_USERS);
-// 	const index = userObjectStore.index("userName");
-// 	const request = index.get();
-// }
-
 function containsUsername(db) {
 	console.log("Contains user name...");
 	const transaction = db.transaction([DB_STORE_USERS], "readonly");
@@ -82,8 +75,8 @@ function containsUsername(db) {
 			request.result.birthday, request.result.password);
 		if (user.password === password.value) {
 			ipc.send("login-successful", user);
-			console.log(user);
-			// remote.getCurrentWindow().close();
+			// console.log(user);
+			remote.getCurrentWindow().close();
 		} else {
 			message(loginError, "Wrong username");
 			message(passwordError, "Wrong password.");
