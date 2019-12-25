@@ -8,13 +8,15 @@ class NewsletterApp {
 	constructor() {
 		this.menu = electron.Menu;
 		this.app = electron.app;
+		this.ipc = electron.ipcMain;
 		this.mainWindow = null;
 		this.getHelloTemplate = require("./templates/HelloMenuTemplate");
 		this.getNewletterTemplate = require("./templates/NewsletterMenuTemplate");
+	}
 
-
+	run() {
 		this.app.on('ready', () => {
-			this.createWindow();
+			this.createWindow("../../html/Hello.html");
 			this.createMenu(this.getHelloTemplate(this.app));
 		});
 
@@ -29,13 +31,13 @@ class NewsletterApp {
 				this.createWindow();
 			}
 		});
+
+		this.ipc.on("login-successful", (evt, arg) => {
+
+		});
 	}
 
-	run() {
-
-	}
-
-	createWindow() {
+	createWindow(fileName) {
 		this.mainWindow = new electron.BrowserWindow({
 			width: 1024,
 			height: 768,
@@ -46,7 +48,7 @@ class NewsletterApp {
 			}
 		});
 
-		this.mainWindow.loadFile(path.join(__dirname, "../../html/Hello.html"));
+		this.mainWindow.loadFile(path.join(__dirname, fileName));
 
 		// Open the DevTools.
 		this.mainWindow.webContents.openDevTools();

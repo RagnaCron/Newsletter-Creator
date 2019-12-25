@@ -10,16 +10,18 @@
 </head>
 <body>
 <header>
-	<button id="close-user-form">X</button>
+	<button id="close-user-form" tabindex="4">X</button>
 </header>
 <main role="main" class="user-content-form">
 	<h1 class="user-form-h1">Login</h1>
 	<form class="credentials">
-		<label class="label-style" for="log-name">Name</label>
-		<input id="log-name" type="text" placeholder="Name">
+		<label class="label-style" for="log-name">Username</label>
+		<input id="log-name" type="text" placeholder="Username" minlength="4" maxlength="12" tabindex="1" required>
+		<span id="log-error" class="reg-errors"></span>
 		<label class="label-style" for="log-password">Enter Password</label>
-		<input id="log-password" type="password">
-		<input id="log-button" class="input-button-style" type="button" value="Login">
+		<input id="log-password" type="password" placeholder="Your password" minlength="8" maxlength="24" tabindex="2" required>
+		<span id="password-error" class="reg-errors"></span>
+		<input id="log-button" class="input-button-style" type="button" value="Login" tabindex="3">
 	</form>
 </main>
 </body>

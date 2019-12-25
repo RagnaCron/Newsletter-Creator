@@ -125,6 +125,7 @@ function addUser(db) {
 	};
 	request.onsuccess = () => {
 		console.log("Adding User success:", request.result);
+		remote.getCurrentWindow().close();
 	};
 }
 
