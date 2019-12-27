@@ -41,7 +41,9 @@ class NewsletterApp {
 			this.mainWindow.unload;
 			this.mainWindow.loadFile(path.join(__dirname, this.overview));
 			this.createMenu(this.getNewletterTemplate(this.app));
-			electron.ipcRenderer.send("logged-in-user", this.user);
+			this.mainWindow.webContents.on("did-finish-load", () => {
+				this.mainWindow.webContents.send("logged-in-user", this.user);
+			})
 		});
 
 		this.ipc.on("quit-editor-with-no-save", () => {
