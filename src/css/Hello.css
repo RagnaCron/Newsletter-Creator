@@ -21,13 +21,3 @@
 .user-buttons {
 	align-items: center;
 }
-
-.nice-button {
-	border-radius: 8px;
-	height: 52px;
-	width: 238px;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	-webkit-transition-duration: 0.4s; /* Safari */
-	transition-duration: 0.4s;
-}

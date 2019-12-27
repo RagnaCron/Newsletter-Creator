@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+	<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"/>
+	<link rel="stylesheet" href="../css/Main.css">
+	<link rel="stylesheet" href="../css/Quit.css">
+	<script src="../js/windows/QuitEditor.js" defer></script>
+</head>
+<body>
+<header>
+	<button id="close-quit-subWindow" class="quit-button">X</button>
+</header>
+<main role="main" class="main-quit">
+	<h1 class="quit-message">Quit with not saving the Template.</h1>
+	<div class="quit-buttons">
+		<button id="quit-yes" class="nice-button quit-small">YES</button>
+		<button id="quit-no" class="nice-button quit-small">NO</button>
+	</div>
+</main>
+</body>
+</html>

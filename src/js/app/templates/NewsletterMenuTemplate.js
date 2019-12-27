@@ -1,6 +1,7 @@
 "use strict";
 
 function getNewsletterTemplate(app) {
+	const electron = require("electron");
 	return [
 		{
 			label: "Menu",
@@ -12,6 +13,9 @@ function getNewsletterTemplate(app) {
 				{type: 'separator'},
 				{
 					label: 'New Newsletter',
+					// click() {
+					// 	electron.remote.ipcRenderer.send("open-mjml-editor");
+					// },
 					accelerator: "CmdOrCtrl+Shift+N"
 				},
 				{type: 'separator'},

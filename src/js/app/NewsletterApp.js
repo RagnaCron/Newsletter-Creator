@@ -43,7 +43,23 @@ class NewsletterApp {
 		// 	this.mainWindow.unload;
 		// 	this.mainWindow.loadFile(path.join(__dirname, this.overview));
 		// 	// this.mainWindow = this.createWindow(this.overview);
-		// 	this.createMenu(this.getNewletterTemplate(this.app))
+		// 	this.createMenu(this.getNewletterTemplate(this.app));
+		// });
+
+		this.ipc.on("quit-editor-with-no-save", () => {
+			this.mainWindow.unload;
+			this.mainWindow.loadFile(path.join(__dirname, this.overview));
+			this.createMenu(this.getNewletterTemplate(this.app));
+		});
+
+		// this.ipc.on("quit-editor-with-save", (evt, arg) => {
+		//
+		// });
+
+		// this.ipc.on("open-mjml-editor", () => {
+		// 	this.mainWindow.unload;
+		// 	this.mainWindow.loadFile(path.join(__dirname), this.editor);
+		// 	this.createMenu(this.getNewletterTemplate(this.app));
 		// });
 	}
 

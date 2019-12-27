@@ -1,0 +1,25 @@
+.main-quit {
+	height: 80%;
+	width: 80%;
+	display: flex;
+	flex-direction: column;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-align: center;
+	justify-content: center
+}
+
+.quit-message {
+	align-self: center;
+	text-align: center;
+}
+
+.quit-buttons {
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.quit-small {
+	width: 20%;
+}

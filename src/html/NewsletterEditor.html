@@ -15,17 +15,19 @@
 	<script src="../js/app/NewsletterApp.js"></script>
 </head>
 <body class="editor-body">
+<div id="backdrop"></div>
 <nav id="sidebar" class="nav-sidebar">
 	<div id="one-column" class="editor-element" draggable="true">1 Column</div>
 	<div id="two-columns" class="editor-element" draggable="true">2 Columns</div>
 	<div id="three-columns" class="editor-element" draggable="true">3 Columns</div>
 	<div id="line" class="editor-element" draggable="true">Line</div>
 	<div id="empty-folder" class="empty">
-		<p>Drag here to delete object.</p>
+		<p>Drag here to delete element.</p>
 		<p>Tipp: Click and hold on the Textfield or the Link form Froala, then drag.</p>
 	</div>
-	<div id="save" class="editor-element">Save</div>
-	<div id="quit" class="editor-element">Quit</div>
+	<div id="preview-content" class="editor-element">Preview</div>
+	<div id="save-content" class="editor-element">Save</div>
+	<div id="quit-editor" class="editor-element">Quit</div>
 </nav>
 <main role="main" id="editor" class="main-editor">
 	<section class="center-editor">

@@ -1,3 +1,4 @@
+"use strict";
 //---------------------------------------------------------------------------//
 //                                                                           //
 // Editor: Basics by Vinzenc Gregori, extended and changes by Manuel Werder. //
@@ -133,5 +134,74 @@ function getText(id) {
 		}
 	}
 }
+
+//---------------------------------------------------------------------------//
+//                                                                           //
+// Electron binding.                                                         //
+//                                                                           //
+//---------------------------------------------------------------------------//
+
+const backdropElement = document.getElementById("backdrop");
+function toggleBackdrop() {
+	backdropElement.classList.toggle('visible');
+}
+
+const previewButton = document.getElementById("preview-content");
+const saveButton = document.getElementById("save-content");
+const quitButton = document.getElementById("quit-editor");
+
+// const electron = require('electron');
+// const path = require('path');
+// const ipc = electron.ipcRenderer;
+const BrowserWindow = electron.remote.BrowserWindow;
+
+const createWindow = (width, height) => {
+	return new BrowserWindow({
+		width: width,
+		height: height,
+		// minWidth: width,
+		// minHeight: height,
+		// maxWidth: width,
+		// maxHeight: height,
+		frame: false,
+		alwaysOnTop: true,
+		webPreferences: {
+			nodeIntegration: true
+		},
+	});
+};
+
+let subWindow = null;
+
+quitButton.addEventListener("click", quit);
+function quit() {
+	const registerHTML = path.join('file://', __dirname, 'QuitEditor.html');
+
+	subWindow = createWindow(600, 320);
+	subWindow.webContents.openDevTools();
+
+	subWindow.on('close', () => {
+		subWindow = null;
+		toggleBackdrop();
+	});
+	subWindow.loadURL(registerHTML).then(() => {
+		toggleBackdrop();
+		subWindow.show();
+	});
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
