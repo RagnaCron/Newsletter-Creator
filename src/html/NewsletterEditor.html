@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" class="editor-html">
+<head>
+	<meta charset="UTF-8">
+	<!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+	<meta http-equiv="Content-Security-Policy" content="script-src 'self'
+	https://cdn.jsdelivr.net/npm/froala-editor@3.0.6/css/froala_editor.pkgd.min.css
+	https://cdn.jsdelivr.net/npm/froala-editor@3.0.6/js/froala_editor.pkgd.min.js 'unsafe-inline';"/>
+	<link rel="stylesheet" href="../css/Main.css">
+	<link rel="stylesheet" href="../css/NewsletterEditor.css">
+	<script src="../js/windows/NewsletterEditor.js" defer></script>
+	<link href="https://cdn.jsdelivr.net/npm/froala-editor@3.0.6/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@3.0.6/js/froala_editor.pkgd.min.js" defer></script>
+	<title id="newsletter-editor-title">Newsletter</title>
+	<script src="../js/app/NewsletterApp.js"></script>
+</head>
+<body class="editor-body">
+<nav id="sidebar" class="nav-sidebar">
+	<div id="one-column" class="editor-element" draggable="true">1 Column</div>
+	<div id="two-columns" class="editor-element" draggable="true">2 Columns</div>
+	<div id="three-columns" class="editor-element" draggable="true">3 Columns</div>
+	<div id="line" class="editor-element" draggable="true">Line</div>
+	<div class="empty"></div>
+	<div id="save" class="editor-element">Save</div>
+	<div id="quit" class="editor-element">Quit</div>
+</nav>
+<main role="main" id="editor" class="main-editor">
+	<section class="center-editor">
+		<div class="editor">
+			<div class="insertion-area"></div>
+			<div class="placeholder"></div>
+		</div>
+	</section>
+</main>
+</body>
+</html>

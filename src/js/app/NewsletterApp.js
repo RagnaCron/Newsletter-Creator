@@ -2,7 +2,7 @@
 
 const electron = require("electron");
 const path = require("path");
-const User = require("../models/User");
+// const User = require("../models/User");
 
 
 class NewsletterApp {
@@ -16,11 +16,12 @@ class NewsletterApp {
 		this.getNewletterTemplate = require("./templates/NewsletterMenuTemplate");
 		this.overview = "../../html/Overview.html";
 		this.hello = "../../html/Hello.html";
+		this.editor = "../../html/NewsletterEditor.html";
 	}
 
 	run() {
 		this.app.on('ready', () => {
-			this.createWindow(this.hello);
+			this.createWindow(this.editor);
 			this.createMenu(this.getHelloTemplate(this.app));
 		});
 
@@ -36,14 +37,14 @@ class NewsletterApp {
 			}
 		});
 
-		this.ipc.on("login-successful", (evt, arg) => {
-			// this.mainWindow = null;
-			this.user = new User(arg.userName, arg.email, arg.birthday, arg.password);
-			this.mainWindow.unload
-			this.mainWindow.loadFile(path.join(__dirname, this.overview));
-			// this.mainWindow = this.createWindow(this.overview);
-			this.createMenu(this.getNewletterTemplate(this.app))
-		});
+		// this.ipc.on("login-successful", (evt, arg) => {
+		// 	// this.mainWindow = null;
+		// 	this.user = new User(arg.userName, arg.email, arg.birthday, arg.password);
+		// 	this.mainWindow.unload;
+		// 	this.mainWindow.loadFile(path.join(__dirname, this.overview));
+		// 	// this.mainWindow = this.createWindow(this.overview);
+		// 	this.createMenu(this.getNewletterTemplate(this.app))
+		// });
 	}
 
 	createWindow(fileName) {
