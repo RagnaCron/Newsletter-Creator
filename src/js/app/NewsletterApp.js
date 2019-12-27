@@ -20,7 +20,7 @@ class NewsletterApp {
 
 	run() {
 		this.app.on('ready', () => {
-			this.createWindow(this.overview);
+			this.createWindow(this.hello);
 			this.createMenu(this.getHelloTemplate(this.app));
 		});
 
