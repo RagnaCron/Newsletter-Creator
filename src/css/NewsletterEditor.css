@@ -35,7 +35,8 @@ hr {
 	border: 1px solid #5b5b5b;
 	height: 100%;
 	text-align: center;
-	align-items: center;
+	flex-direction: column;
+	justify-content: space-evenly;
 }
 
 .main-editor {

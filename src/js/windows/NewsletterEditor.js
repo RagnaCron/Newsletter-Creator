@@ -1,5 +1,3 @@
-
-
 //---------------------------------------------------------------------------//
 //                                                                           //
 // Editor: Basics by Vinzenc Gregori, extended and changes by Manuel Werder. //
@@ -32,87 +30,62 @@ line.addEventListener("dragstart", () => {
 });
 
 let editors = [];
+
 let elementForTrash;
-let columnsElement = [];
 
 function setElementForTrash(element) {
-	console.log(element);
-	// columnsElement.push(element);
 	elementForTrash = element;
-	console.log(columnsElement);
-}
-
-function removeElementFromColumnsElement(element) {
-	columnsElement.forEach(((value, index) => {
-		if (value.id === element.id)
-			delete columnsElement[index];
-	}));
-	// for (let i = 0; i < columnsElement.length; i++) {
-	// 	if (columnsElement[i].id === element.id)
-	// 		delete columnsElement[i];
-	// }
 }
 
 function columnsEvents(id) {
 	const element = document.getElementById(id);
-	element.addEventListener("dragstart", () => {
-		setElementForTrash(element)
-	});
-	columnsElement.push(element);
-	console.log(columnsElement);
+	element.addEventListener("dragstart", () => setElementForTrash(element));
 }
 
 emptyFolder.addEventListener("dragover", (evt) => evt.preventDefault());
-emptyFolder.addEventListener("drop", () => {
 
+emptyFolder.addEventListener("drop", () => {
 	elementForTrash.removeEventListener("dragstart", setElementForTrash);
 	document.getElementsByClassName("insertion-area")[0].removeChild(elementForTrash);
-	removeElementFromColumnsElement(elementForTrash);
 	elementForTrash = null;
-
-	// const element = columnsElement.find((value, index) => {
-	// 	if (value.id === elementForTrashID.id) return [value, index];
-	// });
-	// element.removeEventListener("dragstart", setElementForTrash);
-	// document.getElementsByClassName("insertion-area")[0].removeChild(element[0]);
-	// delete columnsElement[];
 });
 
 placeholder.addEventListener("dragover", (evt) => evt.preventDefault());
+
 placeholder.addEventListener("drop", () => {
 	if (draggingElement === 1) {
-		document.getElementsByClassName("insertion-area")[0].innerHTML +=
+		document.getElementsByClassName("insertion-area")[0].insertAdjacentHTML("beforeend",
 			`<div id="${counter}" class="mjml-columns ${draggingElement}" draggable="true"> 
 				<div style="width: 98%" class="froala-editor" id="editor${counter + 1}"></div>
-			</div>`;
+			</div>`);
 		editors.push(new FroalaEditor(`#editor${counter + 1}`));
 		columnsEvents(counter);
 		counter = counter + 2;
 	} else if (draggingElement === 2) {
-		document.getElementsByClassName("insertion-area")[0].innerHTML +=
+		document.getElementsByClassName("insertion-area")[0].insertAdjacentHTML("beforeend",
 			`<div id="${counter}" class="mjml-columns ${draggingElement}" draggable="true">
 				<div style="width: 48%" class="froala-editor" id="editor${counter + 1}"></div>
 				<div style="width: 48%" class="froala-editor" id="editor${counter + 2}"></div>
-			</div>`;
+			</div>`);
 		editors.push(new FroalaEditor(`#editor${counter + 1}`));
 		editors.push(new FroalaEditor(`#editor${counter + 2}`));
 		columnsEvents(counter);
 		counter = counter + 3;
 	} else if (draggingElement === 3) {
-		document.getElementsByClassName("insertion-area")[0].innerHTML +=
+		document.getElementsByClassName("insertion-area")[0].insertAdjacentHTML("beforeend",
 			`<div id="${counter}" class="mjml-columns ${draggingElement}" draggable="true">
 				<div style="width: 31%" class="froala-editor" id="editor${counter + 1}"></div>
 				<div style="width: 31%" class="froala-editor" id="editor${counter + 2}"></div>
 				<div style="width: 31%" class="froala-editor" id="editor${counter + 3}"></div>
-			</div>`;
+			</div>`);
 		editors.push(new FroalaEditor(`#editor${counter + 1}`));
 		editors.push(new FroalaEditor(`#editor${counter + 2}`));
 		editors.push(new FroalaEditor(`#editor${counter + 3}`));
 		columnsEvents(counter);
 		counter = counter + 4;
 	} else if (draggingElement === 4) {
-		document.getElementsByClassName("insertion-area")[0].innerHTML +=
-			`<hr id="${counter}" class="mjml-columns ${draggingElement}" draggable="true">`;
+		document.getElementsByClassName("insertion-area")[0].insertAdjacentHTML("beforeend",
+			`<hr id="${counter}" class="mjml-columns ${draggingElement}" draggable="true">`);
 		columnsEvents(counter);
 		counter++;
 	}
@@ -127,16 +100,14 @@ function parse() {
 			mjmlCode += "\t<mj-section>\n\t\t\t<mj-column>\n\t\t\t\t<mj-raw>"
 				+ getText(Number(element.id) + 1)
 				+ "</mj-raw>\n\t\t\t</mj-column>\n\t\t</mj-section>\n\t";
-		}
-		else if (element.className === "mjml-columns 2") {
+		} else if (element.className === "mjml-columns 2") {
 			mjmlCode += "\t<mj-section>\n\t\t\t<mj-column>\n\t\t\t\t<mj-raw>"
 				+ getText(Number(element.id) + 1)
 				+ "</mj-raw>\n\t\t\t</mj-column>\n\t\t\t"
 				+ "<mj-column>\n\t\t\t\t<mj-raw>"
 				+ getText(Number(element.id) + 2)
 				+ "</mj-raw>\n\t\t\t</mj-column>\n\t\t</mj-section>\n\t";
-		}
-		else if (element.className === "mjml-columns 3") {
+		} else if (element.className === "mjml-columns 3") {
 			mjmlCode += "\t<mj-section>\n\t\t\t<mj-column>\n\t\t\t\t<mj-raw>"
 				+ getText(Number(element.id) + 1)
 				+ "</mj-raw>\n\t\t\t</mj-column>\n\t\t\t"
@@ -146,8 +117,7 @@ function parse() {
 				+ "<mj-column>\n\t\t\t\t<mj-raw>"
 				+ getText(Number(element.id) + 3)
 				+ "</mj-raw>\n\t\t\t</mj-column>\n\t\t</mj-section>\n\t";
-		}
-		else if (element.className === "mjml-columns 4") {
+		} else if (element.className === "mjml-columns 4") {
 			mjmlCode += "\t<mj-section>\n\t\t\t<mj-column>\n\t\t\t\t<mj-divider/>\n\t\t\t"
 				+ "</mj-column>\n\t\t</mj-section>\n\t"
 		}
@@ -163,3 +133,5 @@ function getText(id) {
 		}
 	}
 }
+
+
