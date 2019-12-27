@@ -32,20 +32,51 @@ line.addEventListener("dragstart", () => {
 });
 
 let editors = [];
-let columnsDraggingEvents = [];
-let elementForBin;
+let elementForTrash;
+let columnsElement = [];
 
-function setElementForBin(element) {
-	elementForBin = element;
+function setElementForTrash(element) {
+	console.log(element);
+	// columnsElement.push(element);
+	elementForTrash = element;
+	console.log(columnsElement);
+}
+
+function removeElementFromColumnsElement(element) {
+	columnsElement.forEach(((value, index) => {
+		if (value.id === element.id)
+			delete columnsElement[index];
+	}));
+	// for (let i = 0; i < columnsElement.length; i++) {
+	// 	if (columnsElement[i].id === element.id)
+	// 		delete columnsElement[i];
+	// }
 }
 
 function columnsEvents(id) {
 	const element = document.getElementById(id);
 	element.addEventListener("dragstart", () => {
-		setElementForBin(element);
-		console.log("added event dragstart");
+		setElementForTrash(element)
 	});
+	columnsElement.push(element);
+	console.log(columnsElement);
 }
+
+emptyFolder.addEventListener("dragover", (evt) => evt.preventDefault());
+emptyFolder.addEventListener("drop", () => {
+
+	elementForTrash.removeEventListener("dragstart", setElementForTrash);
+	document.getElementsByClassName("insertion-area")[0].removeChild(elementForTrash);
+	removeElementFromColumnsElement(elementForTrash);
+	elementForTrash = null;
+
+	// const element = columnsElement.find((value, index) => {
+	// 	if (value.id === elementForTrashID.id) return [value, index];
+	// });
+	// element.removeEventListener("dragstart", setElementForTrash);
+	// document.getElementsByClassName("insertion-area")[0].removeChild(element[0]);
+	// delete columnsElement[];
+});
 
 placeholder.addEventListener("dragover", (evt) => evt.preventDefault());
 placeholder.addEventListener("drop", () => {
@@ -59,16 +90,17 @@ placeholder.addEventListener("drop", () => {
 		counter = counter + 2;
 	} else if (draggingElement === 2) {
 		document.getElementsByClassName("insertion-area")[0].innerHTML +=
-			`<div id="${counter}" class="mjml-columns ${draggingElement}">
+			`<div id="${counter}" class="mjml-columns ${draggingElement}" draggable="true">
 				<div style="width: 48%" class="froala-editor" id="editor${counter + 1}"></div>
 				<div style="width: 48%" class="froala-editor" id="editor${counter + 2}"></div>
 			</div>`;
 		editors.push(new FroalaEditor(`#editor${counter + 1}`));
 		editors.push(new FroalaEditor(`#editor${counter + 2}`));
+		columnsEvents(counter);
 		counter = counter + 3;
 	} else if (draggingElement === 3) {
 		document.getElementsByClassName("insertion-area")[0].innerHTML +=
-			`<div id="${counter}" class="mjml-columns ${draggingElement}">
+			`<div id="${counter}" class="mjml-columns ${draggingElement}" draggable="true">
 				<div style="width: 31%" class="froala-editor" id="editor${counter + 1}"></div>
 				<div style="width: 31%" class="froala-editor" id="editor${counter + 2}"></div>
 				<div style="width: 31%" class="froala-editor" id="editor${counter + 3}"></div>
@@ -76,22 +108,15 @@ placeholder.addEventListener("drop", () => {
 		editors.push(new FroalaEditor(`#editor${counter + 1}`));
 		editors.push(new FroalaEditor(`#editor${counter + 2}`));
 		editors.push(new FroalaEditor(`#editor${counter + 3}`));
+		columnsEvents(counter);
 		counter = counter + 4;
 	} else if (draggingElement === 4) {
 		document.getElementsByClassName("insertion-area")[0].innerHTML +=
-			`<hr id="${counter}" class="mjml-columns ${draggingElement}">`;
+			`<hr id="${counter}" class="mjml-columns ${draggingElement}" draggable="true">`;
+		columnsEvents(counter);
 		counter++;
 	}
-	// parse();
 });
-
-emptyFolder.addEventListener("dragover", (evt) => evt.preventDefault());
-emptyFolder.addEventListener("drop", (evt) => {
-	elementForBin.removeEventListener("dragstart", setElementForBin);
-	document.getElementsByClassName("insertion-area")[0].removeChild(elementForBin);
-	elementForBin = null;
-});
-
 
 function parse() {
 	const mjmlElements = document.getElementsByClassName("mjml-columns");
