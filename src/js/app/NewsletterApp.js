@@ -2,8 +2,7 @@
 
 const electron = require("electron");
 const path = require("path");
-// const User = require("../models/User");
-
+const User = require("../models/User");
 
 class NewsletterApp {
 	constructor() {
@@ -21,7 +20,7 @@ class NewsletterApp {
 
 	run() {
 		this.app.on('ready', () => {
-			this.createWindow(this.editor);
+			this.createWindow(this.hello);
 			this.createMenu(this.getHelloTemplate(this.app));
 		});
 
@@ -37,14 +36,13 @@ class NewsletterApp {
 			}
 		});
 
-		// this.ipc.on("login-successful", (evt, arg) => {
-		// 	// this.mainWindow = null;
-		// 	this.user = new User(arg.userName, arg.email, arg.birthday, arg.password);
-		// 	this.mainWindow.unload;
-		// 	this.mainWindow.loadFile(path.join(__dirname, this.overview));
-		// 	// this.mainWindow = this.createWindow(this.overview);
-		// 	this.createMenu(this.getNewletterTemplate(this.app));
-		// });
+		this.ipc.on("login-successful", (evt, arg) => {
+			this.user = new User(arg.userName, arg.email, arg.birthday, arg.password);
+			this.mainWindow.unload;
+			this.mainWindow.loadFile(path.join(__dirname, this.overview));
+			this.createMenu(this.getNewletterTemplate(this.app));
+			electron.ipcRenderer.send("logged-in-user", this.user);
+		});
 
 		this.ipc.on("quit-editor-with-no-save", () => {
 			this.mainWindow.unload;

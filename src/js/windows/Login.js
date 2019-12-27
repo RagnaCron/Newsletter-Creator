@@ -9,7 +9,7 @@ const DB_NAME = "CreatorDB";
 const DB_VERSION = 1;
 const DB_STORE_USERS = "Users";
 
-const closeButton = document.getElementById("close-user-form");
+const closeButton = document.getElementById("close-login-subWindow");
 closeButton.addEventListener("click", () => {
 	remote.getCurrentWindow().close();
 });
