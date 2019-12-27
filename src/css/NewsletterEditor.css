@@ -34,6 +34,8 @@ hr {
 .empty {
 	border: 1px solid #5b5b5b;
 	height: 100%;
+	text-align: center;
+	align-items: center;
 }
 
 .main-editor {
@@ -65,7 +67,7 @@ hr {
 .mjml-columns {
 	flex-direction: row;
 	justify-content: space-around;
-
+	border: 1px dot-dash #707070;
 }
 
 .froala-editor {
