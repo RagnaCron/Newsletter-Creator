@@ -5,25 +5,29 @@ const path = require('path');
 const ipc = electron.ipcRenderer;
 const BrowserWindow = electron.remote.BrowserWindow;
 
+const backdropElement = document.getElementById("backdrop");
+function toggleBackdrop() {
+	backdropElement.classList.toggle('visible');
+}
+
 const loginButton = document.getElementById('login-button');
 const registerButton = document.getElementById('register-button');
 
-electron.remote.getCurrentWindow().on("close", () => {
+ipc.on("login-successful", () => {
 	registerButton.removeEventListener("click", registration);
 	loginButton.removeEventListener("click", login);
+	electron.remote.getCurrentWindow().close();
 });
-
-ipc.on("login-successful", () => electron.remote.getCurrentWindow().close());
 
 
 const createWindow = (width, height) => {
 	return new BrowserWindow({
 		width: width,
 		height: height,
-		// minWidth: width,
-		// minHeight: height,
-		// maxWidth: width,
-		// maxHeight: height,
+		minWidth: width,
+		minHeight: height,
+		maxWidth: width,
+		maxHeight: height,
 		frame: false,
 		alwaysOnTop: true,
 		webPreferences: {
@@ -32,19 +36,23 @@ const createWindow = (width, height) => {
 	});
 };
 
-let subWindow = null;
+let helloSubWindow = null;
 
 registerButton.addEventListener("click", registration);
 function registration() {
 	const registerHTML = path.join('file://', __dirname, 'Registration.html');
 
-	subWindow = createWindow(600, 700);
-	subWindow.webContents.openDevTools();
+	helloSubWindow = createWindow(600, 700);
+	// helloSubWindow.webContents.openDevTools();
 
-	subWindow.on('close', () => {
-		subWindow = null
+	helloSubWindow.on('close', () => {
+		helloSubWindow = null;
+		toggleBackdrop();
 	});
-	subWindow.loadURL(registerHTML).then(() => subWindow.show());
+	helloSubWindow.loadURL(registerHTML).then(() => {
+		toggleBackdrop();
+		helloSubWindow.show();
+	});
 }
 
 
@@ -52,9 +60,15 @@ loginButton.addEventListener("click", login);
 function login() {
 	const loginHTML = path.join('file://', __dirname, 'Login.html');
 
-	subWindow = createWindow(600, 700);
-	subWindow.webContents.openDevTools();
+	helloSubWindow = createWindow(600, 700);
+	// helloSubWindow.webContents.openDevTools();
 
-	subWindow.on('close', () => subWindow = null);
-	subWindow.loadURL(loginHTML).then(() => subWindow.show());
+	helloSubWindow.on('close', () => {
+		helloSubWindow = null;
+		toggleBackdrop();
+	});
+	helloSubWindow.loadURL(loginHTML).then(() => {
+		toggleBackdrop();
+		helloSubWindow.show();
+	});
 }

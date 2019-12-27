@@ -159,10 +159,10 @@ const createWindow = (width, height) => {
 	return new BrowserWindow({
 		width: width,
 		height: height,
-		// minWidth: width,
-		// minHeight: height,
-		// maxWidth: width,
-		// maxHeight: height,
+		minWidth: width,
+		minHeight: height,
+		maxWidth: width,
+		maxHeight: height,
 		frame: false,
 		alwaysOnTop: true,
 		webPreferences: {
@@ -171,22 +171,22 @@ const createWindow = (width, height) => {
 	});
 };
 
-let subWindow = null;
+let quitSubWindow = null;
 
 quitButton.addEventListener("click", quit);
 function quit() {
 	const registerHTML = path.join('file://', __dirname, 'QuitEditor.html');
 
-	subWindow = createWindow(600, 320);
-	subWindow.webContents.openDevTools();
+	quitSubWindow = createWindow(600, 320);
+	// quitSubWindow.webContents.openDevTools();
 
-	subWindow.on('close', () => {
-		subWindow = null;
+	quitSubWindow.on('close', () => {
+		quitSubWindow = null;
 		toggleBackdrop();
 	});
-	subWindow.loadURL(registerHTML).then(() => {
+	quitSubWindow.loadURL(registerHTML).then(() => {
 		toggleBackdrop();
-		subWindow.show();
+		quitSubWindow.show();
 	});
 }
 
