@@ -1,0 +1,28 @@
+.main-table {
+	align-content: center;
+}
+
+.newsletters {
+	text-align: center;
+}
+
+.quit-button {
+	border: 1px solid #707070;
+}
+
+.table-content {
+	height: 90%;
+	width: 90%;
+	display: flex;
+	flex-direction: column;
+	font-family: inherit;
+	/*justify-content: space-around;*/
+}
+
+table {
+	align-self: center;
+	align-content: space-evenly;
+	text-align: left;
+}
+
+

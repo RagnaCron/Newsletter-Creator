@@ -20,7 +20,7 @@ class NewsletterApp {
 
 	run() {
 		this.app.on('ready', () => {
-			this.createWindow(this.hello);
+			this.createWindow(this.overview);
 			this.createMenu(this.getHelloTemplate(this.app));
 		});
 
@@ -32,7 +32,8 @@ class NewsletterApp {
 
 		this.app.on('activate', () => {
 			if (this.mainWindow === null) {
-				this.createWindow();
+				this.createWindow(this.hello);
+				this.user = null;
 			}
 		});
 
@@ -56,11 +57,13 @@ class NewsletterApp {
 		//
 		// });
 
-		// this.ipc.on("open-mjml-editor", () => {
-		// 	this.mainWindow.unload;
-		// 	this.mainWindow.loadFile(path.join(__dirname), this.editor);
-		// 	this.createMenu(this.getNewletterTemplate(this.app));
-		// });
+		this.ipc.on("open-mjml-editor", () => {
+			this.mainWindow.unload;
+			this.mainWindow.loadFile(path.join(__dirname, this.editor)).then(() => {
+				this.createMenu(this.getNewletterTemplate(this.app));
+				this.mainWindow.webContents.send("user-data", this.user);
+			});
+		});
 	}
 
 	createWindow(fileName) {

@@ -16,7 +16,7 @@ const registerButton = document.getElementById('register-button');
 ipc.on("login-successful", () => {
 	registerButton.removeEventListener("click", registration);
 	loginButton.removeEventListener("click", login);
-	electron.remote.getCurrentWindow().close();
+	// electron.remote.getCurrentWindow().close();
 });
 
 
