@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+	<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"/>
+	<link rel="stylesheet" href="../css/Main.css">
+	<link rel="stylesheet" href="../css/Hello.css">
+	<script src="../js/windows/Hello.js" defer></script>
+	<title>Welcome</title>
+</head>
+<body>
+<div id="backdrop"></div>
+<main role="main" class="hello-content">
+	<div class="center-content">
+		<h1 class="main-hello">The Email Newsletter Creator</h1>
+		<p class="main-description">
+		<div class="main-description">Create your own custom Email Newsletters</div>
+		<div class="main-description">and Export them in html or mjml.</div>
+		</p><br><br>
+		<div class="user-buttons">
+			<button id="login-button" class="nice-button">Login</button>
+			<br>
+			<button id="register-button" class="nice-button">Sign up</button>
+		</div>
+	</div>
+</main>
+</body>
+</html>

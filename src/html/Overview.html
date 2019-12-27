@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+	<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"/>
+	<link rel="stylesheet" href="../css/Main.css">
+	<link rel="stylesheet" href="../css/Overview.css">
+	<script src="../js/windows/Overview.js" defer></script>
+	<title>Newsletter Overview</title>
+</head>
+<body>
+<div id="backdrop"></div>
+<main role="main" class="table-content">
+	<button id="create-new-newsletter" class="quit-button">New++</button>
+	<h1 class="newsletters">Your Newsletters</h1>
+	<div class="main-table">
+		<table id="le-table" class="display" style="width:100%">
+			<template>
+
+			</template>
+			<thead>
+			<tr>
+				<th>Save Date</th>
+				<th>Newsletter name</th>
+<!--				<th>Preview</th>-->
+<!--				<th>Edit that shit</th>-->
+<!--				<th>For the Trash</th>-->
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td>Tiger Nixon</td>
+				<td>System Architect</td>
+				<td>Edinburgh</td>
+				<td>61</td>
+				<td>2011/04/25</td>
+			</tr>
+			</tbody>
+			<tfoot>
+			<tr>
+				<th>Save Date</th>
+				<th>Newsletter name</th>
+<!--				<th>Preview</th>-->
+<!--				<th>Edit that shit</th>-->
+<!--				<th>For the Trash</th>-->
+			</tr>
+			</tfoot>
+		</table>
+	</div>
+</main>
+</body>
+</html>

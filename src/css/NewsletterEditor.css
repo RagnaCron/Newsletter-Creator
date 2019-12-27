@@ -1,0 +1,84 @@
+html, body {
+	height: 100%;
+}
+
+hr {
+	size: 2px;
+	width: 95%;
+}
+
+.editor-body {
+	margin: 0;
+	padding: 0;
+}
+
+.nav-sidebar {
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+	font-size: 20px;
+	text-align:center;
+}
+
+.editor-element {
+	border: 1px solid #5b5b5b;
+	padding: 20px;
+	background-color: #efefef;
+}
+
+.editor-element:hover {
+	cursor: pointer;
+	background: white;
+}
+
+.empty {
+	border: 1px solid #5b5b5b;
+	height: 100%;
+	text-align: center;
+	flex-direction: column;
+	justify-content: space-evenly;
+}
+
+.main-editor {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	overflow-y: scroll;
+}
+
+.center-editor {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 85%;
+	align-self: center;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #5b5b5b;
+	align-items: center;
+}
+
+.editor {
+	width: 100%;
+}
+
+.insertion-area {
+	justify-self: center;
+}
+
+.mjml-columns {
+	flex-direction: row;
+	justify-content: space-around;
+	border: 1px dot-dash #707070;
+}
+
+.froala-editor {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	flex-direction: column;
+}
+
+.placeholder {
+	height: 75px;
+	border: 1px dashed;
+	background: #efefef;
+}

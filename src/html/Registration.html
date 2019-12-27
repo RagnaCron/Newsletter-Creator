@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+	<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"/>
+	<link rel="stylesheet" href="../css/Main.css">
+	<link rel="stylesheet" href="../css/UserForm.css">
+	<script src="../js/windows/Register.js" defer></script>
+</head>
+<body>
+<header>
+	<button id="close-register-subWindow" class="quit-button" tabindex="7">X</button>
+</header>
+<main role="main" class="user-content-form">
+	<h1 class="user-form-h1">Sign Up</h1>
+	<form id="reg-form" class="credentials">
+		<label class="label-style" for="reg-name">Name</label>
+		<input id="reg-name" type="text" placeholder="Name" minlength="4" maxlength="12" tabindex="1" required>
+		<span id="name-error" class="reg-errors"></span>
+		<label class="label-style" for="reg-email">Email</label>
+		<input id="reg-email" type="email" placeholder="your@emailaddress.com" tabindex="2" required>
+		<span id="email-error" class="reg-errors"></span>
+		<label class="label-style" for="reg-birthday">Birthday</label>
+		<input id="reg-birthday" type="date" tabindex="3" required>
+		<span id="birthday-error" class="reg-errors"></span>
+		<label class="label-style" for="reg-password1">Enter Password</label>
+		<input id="reg-password1" type="password" placeholder="Password" minlength="8" maxlength="24" tabindex="4" required>
+		<span id="password1-error" class="reg-errors"></span>
+		<label class="label-style" for="reg-password2">Confirm Password</label>
+		<input id="reg-password2" type="password" placeholder="Confirm Password" minlength="8" maxlength="24" tabindex="5" required>
+		<span id="password2-error" class="reg-errors"></span>
+		<input id="reg-button" class="input-button-style" type="button" value="Sign Up" tabindex="6">
+	</form>
+</main>
+</body>
+</html>
