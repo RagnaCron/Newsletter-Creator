@@ -30,6 +30,7 @@ line.addEventListener("dragstart", () => {
 	draggingElement = 4;
 });
 
+// TODO: POP EDITOR WHEN REMOVING FROM EDITOR
 let editors = [];
 
 let elementForTrash;
@@ -125,6 +126,7 @@ function parse() {
 	}
 	mjmlCode += "</mj-body>\n</mjml>";
 	console.log(mjmlCode);
+	return mjmlCode;
 }
 
 function getText(id) {
@@ -150,8 +152,8 @@ const previewButton = document.getElementById("preview-content");
 const saveButton = document.getElementById("save-content");
 const quitButton = document.getElementById("quit-editor");
 
-// const electron = require('electron');
-// const path = require('path');
+const electron = require('electron');
+const path = require('path');
 // const ipc = electron.ipcRenderer;
 const BrowserWindow = electron.remote.BrowserWindow;
 
@@ -171,25 +173,67 @@ const createWindow = (width, height) => {
 	});
 };
 
-let quitSubWindow = null;
+function createSubWindowFrom(filename, width, height) {
+	const url = path.join("file://", __dirname, filename);
 
-quitButton.addEventListener("click", quit);
-function quit() {
-	const registerHTML = path.join('file://', __dirname, 'QuitEditor.html');
-
-	quitSubWindow = createWindow(600, 320);
+	editorSubWindow = createWindow(width, height);
 	// quitSubWindow.webContents.openDevTools();
 
-	quitSubWindow.on('close', () => {
-		quitSubWindow = null;
+	editorSubWindow.on("close", () => {
+		editorSubWindow = null;
 		toggleBackdrop();
 	});
-	quitSubWindow.loadURL(registerHTML).then(() => {
+	editorSubWindow.loadURL(url).then(() => {
 		toggleBackdrop();
-		quitSubWindow.show();
+		editorSubWindow.show();
 	});
 }
 
+let editorSubWindow = null;
+
+quitButton.addEventListener("click",
+	() => createSubWindowFrom("QuitEditor.html", 600, 320));
+saveButton.addEventListener("click",
+	() => createSubWindowFrom("SaveEditor.html", 600, 320));
+
+
+const DB_NAME = "CreatorDB";
+const DB_VERSION = 1;
+const DB_STORE_NEWSLETTERS = "Newsletters";
+
+function connectToDB(dbCallback) {
+	console.log("opening DB ...");
+	const request = indexedDB.open(DB_NAME, DB_VERSION);
+	request.onupgradeneeded = () => {
+		console.log("opening DB onupgradeneeded");
+		if (!request.result.objectStoreNames.contains(DB_STORE_NEWSLETTERS)) {
+			const newsletterObjectStore = request.result.createObjectStore(
+				DB_STORE_NEWSLETTERS, {keyPath: 'id', autoIncrement: true});
+			newsletterObjectStore.createIndex("userName", "userName", {unique: false});
+			newsletterObjectStore.createIndex("newsletterName", "newsletterName", {unique: true});
+		}
+	};
+	request.onsuccess = () => {
+		console.log("opening DB DONE");
+		dbCallback(request.result);
+	};
+	request.onerror = () => {
+		console.error("opening DB ERROR:", request.error);
+	};
+}
+
+function addNewsletter(db) {
+	const transaction = db.transaction([DB_STORE_NEWSLETTERS], "readwrite");
+	const newsletterObjectStore = transaction.objectStore(DB_STORE_NEWSLETTERS);
+
+	// const request = newsletterObjectStore.add(user);
+	// request.onerror = () => {
+	// 	console.error("Adding User ERROR:", request.error);
+	// };
+	// request.onsuccess = () => {
+	// 	console.log("Adding User success:", request.result);
+	// };
+}
 
 
 

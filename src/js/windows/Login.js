@@ -18,13 +18,6 @@ function message(field, message) {
 	field.innerText = message;
 }
 
-function inputValidationCheck(validationField, errorField, errorMessage) {
-	if (validationField.validity.valid)
-		message(errorField, "");
-	else
-		message(errorField, errorMessage);
-}
-
 const loginName =  document.getElementById("log-name");
 const loginError = document.getElementById("log-error");
 
