@@ -20,7 +20,7 @@ class NewsletterApp {
 
 	run() {
 		this.app.on('ready', () => {
-			this.createWindow(this.hello);
+			this.createWindow(this.overview);
 			this.createMenu(this.getHelloTemplate(this.app));
 		});
 
@@ -40,11 +40,13 @@ class NewsletterApp {
 		this.ipc.on("login-successful", (evt, arg) => {
 			this.user = new User(arg.userName, arg.email, arg.birthday, arg.password);
 			this.mainWindow.unload;
-			this.mainWindow.loadFile(path.join(__dirname, this.overview));
-			this.createMenu(this.getNewletterTemplate(this.app));
-			this.mainWindow.webContents.on("did-finish-load", () => {
-				this.mainWindow.webContents.send("logged-in-user", this.user);
-			})
+			this.mainWindow.loadFile(path.join(__dirname, this.overview)).then(() => {
+				this.createMenu(this.getNewletterTemplate(this.app));
+				this.mainWindow.webContents.on("did-finish-load", () => {
+					this.mainWindow.webContents.send("logged-in-user", this.user);
+				});
+			});
+
 		});
 
 		this.ipc.on("quit-editor-with-no-save", () => {
