@@ -6,17 +6,18 @@
 	<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';"/>
 	<link rel="stylesheet" href="../css/Main.css">
 	<link rel="stylesheet" href="../css/SaveAndQuitEditor.css">
-	<script src="../js/windows/QuitEditor.js" defer></script>
+	<script src="../js/windows/SaveEditor.js" defer></script>
 </head>
 <body>
 <header>
-	<button id="close-quit-subWindow" class="quit-button">X</button>
+	<button id="close-save-subWindow" class="quit-button">X</button>
 </header>
 <main role="main" class="main-quit">
-	<h1 class="quit-message">Quit with not saving the Template.</h1>
+	<h1 class="quit-message">Save your Newsletter.</h1>
 	<div class="quit-buttons">
-		<button id="quit-yes" class="nice-button quit-small">YES</button>
-		<button id="quit-no" class="nice-button quit-small">NO</button>
+		<button id="save-yes" class="nice-button quit-small">Save</button>
+		<button id="save-and-quit-yes" class="nice-button quit-small">Save and Quit</button>
+		<button id="save-cancel" class="nice-button quit-small">Cancel</button>
 	</div>
 </main>
 </body>
